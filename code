@@ -1,0 +1,34 @@
+import random
+import string
+import secrets 
+
+words=["easy","broke","rip","happy","sad"]
+def random_generator(lvl):
+    if lvl=="weak":
+        psswd = words[random.randint(0,4)]
+    elif lvl=="normal":
+        characters=string.ascii_lowercase + string.ascii_uppercase + string.punctuation
+        psswd = ''.join(random.choice(characters) for i in range(10))
+
+    elif lvl=="secure":
+        characters=string.ascii_letters + string.punctuation
+        psswd = ''.join(secrets.choice(characters) for i in range(12))
+    
+    return psswd
+
+if __name__=="__main__":
+    Continue = True
+    while Continue:
+        generate=input("Would you like to generate a password? ")
+        if generate!="yes":
+            break
+        
+        strenght=input("How strong would you like your password to be?(weak,normal,secure) ")
+
+        password=random_generator(strenght)
+
+        print(f"Your password is {password}")
+
+        if input("Would you like to continue?")=="no":
+            Continue = "False"
+            print("Take care")
